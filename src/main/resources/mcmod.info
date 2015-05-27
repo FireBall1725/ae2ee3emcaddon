@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ae2ee3emcaddon",
+  "name": "AE2 EE3 EMC Addon",
+  "description": "Adds EMC to AE2 Items",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["FireBall1725"],
+  "credits": "FireBall1725",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

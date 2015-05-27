@@ -1,0 +1,67 @@
+repositories {
+    mavenLocal()
+    maven {
+        name "ChickenBones"
+        url "http://chickenbones.net/maven/"
+    }
+
+    maven {
+        name "Mobius"
+        url "http://mobiusstrip.eu/maven"
+    }
+
+    maven {
+        name "FireBall API Depot"
+        url "http://dl.tsr.me/artifactory/libs-release-local"
+    }
+
+    maven {
+        name = "Player"
+        url = "http://maven.ic2.player.to/"
+    }
+
+    maven {
+        name = "Tterrag"
+        url = "http://maven.tterrag.com/"
+    }
+
+    maven  {
+        name = "RX14 Proxy"
+        url = "http://mvn.rx14.co.uk/repo/"
+    }
+
+    maven {
+        name "OpenComputers Repo"
+        url = "http://maven.cil.li/"
+    }
+
+//  CurseForge DNS for TE is not available or I am just being unlucky, code part can stay since this is applicable to any other curseforge mod though
+//    ivy {
+//        name = "CoFHLib"
+//        artifactPattern "http://addons.cursecdn.com/files/2212/893/[module]-[revision].[ext]"
+//    }
+//
+//    ivy {
+//        name = "CoFHCore"
+//        artifactPattern "http://addons.cursecdn.com/files/2212/895/[module]-[revision].[ext]"
+//    }
+
+//    ivy {
+//        name = "ThermalExpansion"
+//        artifactPattern "http://addons.curse.cursecdn.com/files/2212/446/[module]-[revision].[ext]"
+//    }
+
+//    ivy {
+//        name = "ThermalFoundation"
+//        artifactPattern "http://addons.curse.cursecdn.com/files/2212/444/[module]-[revision].[ext]"
+//    }
+}
+
+configurations {
+    mods
+}
+
+dependencies {
+    compile "appeng:appliedenergistics2:rv2-beta-33:dev"
+    compile "com.pahimar.ee3:EquivalentExchange3:1.7.10-0.3.507:dev"
+}

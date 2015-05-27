@@ -1,0 +1,72 @@
+apply plugin: 'forge'
+
+apply from: 'gradle/scripts/dependencies.gradle'
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+
+configurations.all {
+    resolutionStrategy.cacheDynamicVersionsFor 7200, 'hours'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_6
+
+version = "0.0.0"
+
+// If TeamCity is running this build, lets set the version info
+if (hasProperty("teamcity")) {
+    version = teamcity["build.number"]
+
+    // Fix for main branch being built
+    version = version.replaceAll("/", "-")
+}
+
+minecraft {
+    version = minecraft_version + "-" + forge_version
+
+    replaceIn "ae2ee3emcaddon.java"
+    replace "@version@", project.version
+
+    // used when launching minecraft in dev env
+    runDir = "run"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += 'src/main/java/'
+        }
+
+        resources {
+            srcDir "src/main/resources/"
+            include "mcmod.info"
+        }
+    }
+}
+
+processResources {
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': minecraft_version
+    }
+}
