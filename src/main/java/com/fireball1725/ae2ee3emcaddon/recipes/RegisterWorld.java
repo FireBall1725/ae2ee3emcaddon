@@ -23,7 +23,7 @@ public class RegisterWorld {
         final IItems items = definitions.items();
 
         if (AEConfig.instance.isFeatureEnabled(AEFeature.inWorldFluix)) {
-            addRecipe(materials.fluixCrystal().maybeStack(1).get(), Arrays.asList(new ItemStack[]{materials.certusQuartzCrystalCharged().maybeStack(1).get(), new ItemStack(Items.redstone, 1), new ItemStack(Items.quartz, 1)}));
+            addRecipe(materials.fluixCrystal().maybeStack(2).get(), Arrays.asList(new ItemStack[]{materials.certusQuartzCrystalCharged().maybeStack(1).get(), new ItemStack(Items.redstone, 1), new ItemStack(Items.quartz, 1)}));
             recipeCount++;
         }
 
