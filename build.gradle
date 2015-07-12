@@ -1,6 +1,8 @@
 apply plugin: 'forge'
+apply plugin: 'curseforge'
 
 apply from: 'gradle/scripts/dependencies.gradle'
+apply from: 'gradle/scripts/artifacts.gradle'
 
 buildscript {
     repositories {
@@ -30,21 +32,30 @@ configurations.all {
 sourceCompatibility = JavaVersion.VERSION_1_6
 targetCompatibility = JavaVersion.VERSION_1_6
 
-version = "0.0.0"
+ext {
+    curseApiKey = ""
+    curseReleaseType = ""
+}
+
+version = minecraft_version + "-" + "b" + cibuild + "-universal"
+archivesBaseName = cibasename
 
 // If TeamCity is running this build, lets set the version info
 if (hasProperty("teamcity")) {
-    version = teamcity["build.number"]
+    version = minecraft_version + "-" + teamcity["build.number"] + "-universal"
 
     // Fix for main branch being built
     version = version.replaceAll("/", "-")
+
+    curseApiKey = teamcity["apiKey"]
+    curseReleaseType = teamcity["releaseType"]
 }
 
 minecraft {
     version = minecraft_version + "-" + forge_version
 
-    replaceIn "ae2ee3emcaddon.java"
     replace "@version@", project.version
+    replace "@MCVERSION@", minecraft_version
 
     // used when launching minecraft in dev env
     runDir = "run"
@@ -69,4 +80,12 @@ processResources {
         include 'mcmod.info'
         expand 'version': project.version, 'mcversion': minecraft_version
     }
+}
+
+curse {
+    apiKey = curseApiKey
+    releaseType = curseReleaseType
+    projectId = "230951"
+    changelog = file("build/libs/changelog.txt").text
+    addGameVersion minecraft_version
 }

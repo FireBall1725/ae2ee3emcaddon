@@ -35,33 +35,19 @@ repositories {
         url = "http://maven.cil.li/"
     }
 
-//  CurseForge DNS for TE is not available or I am just being unlucky, code part can stay since this is applicable to any other curseforge mod though
-//    ivy {
-//        name = "CoFHLib"
-//        artifactPattern "http://addons.cursecdn.com/files/2212/893/[module]-[revision].[ext]"
-//    }
-//
-//    ivy {
-//        name = "CoFHCore"
-//        artifactPattern "http://addons.cursecdn.com/files/2212/895/[module]-[revision].[ext]"
-//    }
-
-//    ivy {
-//        name = "ThermalExpansion"
-//        artifactPattern "http://addons.curse.cursecdn.com/files/2212/446/[module]-[revision].[ext]"
-//    }
-
-//    ivy {
-//        name = "ThermalFoundation"
-//        artifactPattern "http://addons.curse.cursecdn.com/files/2212/444/[module]-[revision].[ext]"
-//    }
+    ivy {
+        name "BuildCraft"
+        artifactPattern "http://www.mod-buildcraft.com/releases/BuildCraft/[revision]/[module]-[revision]-[classifier].[ext]"
+    }
 }
 
 configurations {
     mods
+    shade
+    compile.extendsFrom shade
 }
 
 dependencies {
-    compile "appeng:appliedenergistics2:rv2-beta-33:dev"
-    compile "com.pahimar.ee3:EquivalentExchange3:1.7.10-0.3.507:dev"
+    compile "appeng:appliedenergistics2:${ae2_version}:dev"
+    compile "com.pahimar.ee3:EquivalentExchange3:1.7.10-${ee3_version}:dev"
 }
