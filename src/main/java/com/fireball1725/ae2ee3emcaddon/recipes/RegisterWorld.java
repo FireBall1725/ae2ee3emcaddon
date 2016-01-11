@@ -22,19 +22,19 @@ public class RegisterWorld {
         final IMaterials materials = definitions.materials();
         final IItems items = definitions.items();
 
-        if (AEConfig.instance.isFeatureEnabled(AEFeature.InWorldFluix)) {
+        //if (AEConfig.instance.isFeatureEnabled(AEFeature.InWorldFluix)) {
             addRecipe(materials.fluixCrystal().maybeStack(2).get(), Arrays.asList(new ItemStack[]{materials.certusQuartzCrystalCharged().maybeStack(1).get(), new ItemStack(Items.redstone, 1), new ItemStack(Items.quartz, 1)}));
             recipeCount++;
-        }
+        //}
 
-        if (AEConfig.instance.isFeatureEnabled(AEFeature.InWorldPurification)) {
+        //if (AEConfig.instance.isFeatureEnabled(AEFeature.InWorldPurification)) {
             addRecipe(materials.purifiedCertusQuartzCrystal().maybeStack(1).get(), Arrays.asList(new ItemStack[]{new ItemStack(items.crystalSeed().maybeItem().get(), 1)}));
             recipeCount++;
             addRecipe(materials.purifiedFluixCrystal().maybeStack(1).get(), Arrays.asList(new ItemStack[]{new ItemStack(items.crystalSeed().maybeItem().get(), 1, 600)}));
             recipeCount++;
             addRecipe(materials.purifiedNetherQuartzCrystal().maybeStack(1).get(), Arrays.asList(new ItemStack[]{new ItemStack(items.crystalSeed().maybeItem().get(), 1, 1200)}));
             recipeCount++;
-        }
+        //}
 
         AELog.info("Told EE3 about " + recipeCount + " world recipes...");
     }
